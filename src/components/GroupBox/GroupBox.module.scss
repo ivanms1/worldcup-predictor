@@ -1,0 +1,23 @@
+.GroupBox {
+  & .Name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  & .Navbar {
+    display: flex;
+    margin-left: 170px;
+
+    & .NavbarItem {
+      text-align: center;
+      width: 30px;
+    }
+  }
+
+  & .Countries {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}

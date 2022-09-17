@@ -1,0 +1,17 @@
+.CountryRow {
+  align-items: center;
+  display: flex;
+
+  & .InfoBox {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px;
+    width: 160px;
+  }
+
+  & .PointBox {
+    text-align: center;
+    width: 30px;
+  }
+}

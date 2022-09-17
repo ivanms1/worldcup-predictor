@@ -1,31 +1,19 @@
-import Head from "next/head";
+import GroupBox from "@/components/GroupBox";
 
-import Button from "@/components/Button";
+import groups from "@/assets/groups/groups.json";
 
 import styles from "./Home.module.scss";
-import { useState } from "react";
 
 function Home() {
-  const [count, setCount] = useState(0);
-
-  const handleClick = () => {
-    setCount((prev) => prev + 1);
-  };
   return (
     <div className={styles.Container}>
-      <Head>
-        <title>Next Template</title>
-        <meta name="description" content="Next.js template by Ivan" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <h1>Welcome to My Next.js Template</h1>
-      <a href="https://github.com/ivanms1" target="_blank" rel="noreferrer">
-        ivanms1
-      </a>
-      <p>count: {count}</p>
-      <Button onClick={handleClick} className={styles.Button}>
-        Click Me
-      </Button>
+      <h1 className={styles.Title}>Qatar 2022 Worldcup Predictor</h1>
+      <p className={styles.Subtitle}>Have fun and share your predictions</p>
+      <div className={styles.GroupsContainer}>
+        {groups.map((group) => (
+          <GroupBox key={group.name} group={group} />
+        ))}
+      </div>
     </div>
   );
 }
