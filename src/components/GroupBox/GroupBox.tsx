@@ -3,7 +3,7 @@ import CountryRow from "../CountryRow";
 
 import styles from "./GroupBox.module.scss";
 
-export const COLUMN_NAMES = ["Pts", "MP", "W", "D", "L", "GF", "GA", "GD"];
+export const COLUMN_NAMES = ["Pts", "MP", "W", "D", "L", "GD"];
 
 interface GroupBoxProps {
   group: { name: string; countries: { name: string; flag: string }[] };
