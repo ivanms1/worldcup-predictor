@@ -1,8 +1,10 @@
 .Container {
+  align-items: center;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 0 0.5rem;
+  padding: 2rem 1rem;
+  width: 100%;
 
   & .Title {
     font-size: 4rem;
@@ -13,12 +15,14 @@
   & .Subtitle {
     font-size: 1.5rem;
     line-height: 1.5;
+    margin-bottom: 2rem;
     text-align: center;
   }
 
   & .GroupsContainer {
     display: flex;
     flex-wrap: wrap;
-    gap: 5rem;
+    gap: 2rem;
+    justify-content: center;
   }
 }

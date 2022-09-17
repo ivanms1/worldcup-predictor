@@ -1,23 +1,37 @@
 .GroupBox {
+  border: 1px solid rgba(153 153 153 / 20%);
+  padding: 0;
+
   & .Name {
     font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    text-align: left;
   }
 
   & .Navbar {
+    align-items: center;
+    background-color: #fafafa;
     display: flex;
-    margin-left: 170px;
+    padding: 10px;
 
-    & .NavbarItem {
-      text-align: center;
-      width: 30px;
+    & .Columns {
+      display: flex;
+      margin-left: 150px;
+
+      & .NavbarItem {
+        font-weight: 700;
+        text-align: center;
+        width: 30px;
+      }
     }
   }
 
   & .Countries {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+
+    & > :not(:last-child) {
+      border-bottom: 1px solid rgb(153 153 153 / 20%);
+    }
   }
 }

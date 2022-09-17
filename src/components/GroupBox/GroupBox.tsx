@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Button";
 import CountryRow from "../CountryRow";
 
 import styles from "./GroupBox.module.scss";
@@ -13,21 +14,23 @@ function GroupBox({ group }: GroupBoxProps) {
   const { name, countries } = group;
 
   return (
-    <div className={styles.GroupBox}>
-      <p className={styles.Name}>{name}</p>
+    <Button variant="ghost" className={styles.GroupBox}>
       <div className={styles.Navbar}>
-        {COLUMN_NAMES.map((name) => (
-          <p key={name} className={styles.NavbarItem}>
-            {name}
-          </p>
-        ))}
+        <p className={styles.Name}>{name}</p>
+        <div className={styles.Columns}>
+          {COLUMN_NAMES.map((name) => (
+            <p key={name} className={styles.NavbarItem}>
+              {name}
+            </p>
+          ))}
+        </div>
       </div>
       <div className={styles.Countries}>
         {countries.map((country) => (
           <CountryRow key={country.name} country={country} />
         ))}
       </div>
-    </div>
+    </Button>
   );
 }
 

@@ -1,0 +1,24 @@
+.Button {
+  background-color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: green;
+  }
+
+  &.primary {
+    background-color: red;
+  }
+
+  &.secondary {
+    background-color: blue;
+  }
+
+  &.ghost {
+    background: transparent;
+  }
+}
