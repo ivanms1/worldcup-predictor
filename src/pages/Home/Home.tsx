@@ -7,7 +7,7 @@ import styles from "./Home.module.scss";
 function Home() {
   return (
     <div className={styles.Container}>
-      <h1 className={styles.Title}>Qatar 2022 Worldcup Predictor</h1>
+      <h1 className={styles.Title}>2022 Worldcup Predictor</h1>
       <p className={styles.Subtitle}>Have fun and share your predictions</p>
       <div className={styles.GroupsContainer}>
         {groups.map((group) => (
