@@ -1,0 +1,55 @@
+.GroupSlideModal {
+  & .Title {
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  & .Matchups {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & .Matchup {
+      display: flex;
+      gap: 20px;
+
+      & .MatchupCountry {
+        align-items: center;
+        display: flex;
+        gap: 5px;
+        width: 250px;
+
+        &.left {
+          justify-content: flex-end;
+        }
+
+        &.right {
+          justify-content: flex-start;
+        }
+
+        & .ScoreInput {
+          font-size: 1.2rem;
+          height: 50px;
+          padding: 2px 5px;
+          width: 50px;
+        }
+      }
+    }
+  }
+
+  & .ActionSection {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    & .MatchupCountryName {
+      font-size: 14px;
+    }
+  }
+}

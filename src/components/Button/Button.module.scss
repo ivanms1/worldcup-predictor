@@ -1,5 +1,4 @@
 .Button {
-  background-color: #000;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -11,11 +10,22 @@
   }
 
   &.primary {
-    background-color: red;
+    background-color: #0d0c22;
+    color: #fff;
+
+    &:hover {
+      background-color: #44444a;
+      color: #fff;
+    }
   }
 
   &.secondary {
-    background-color: blue;
+    background: #f3f3f4;
+    color: #0d0c22;
+
+    &:hover {
+      background-color: #d3d3d4;
+    }
   }
 
   &.ghost {
