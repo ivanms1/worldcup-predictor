@@ -13,12 +13,19 @@ import styles from "./GroupSlideModal.module.scss";
 interface GroupSlideModalProps {
   isOpen: boolean;
   onClose: () => void;
-  group: { name: string; countries: { name: string; flag: string }[] };
+  group: {
+    name: string;
+    countries: { name: string; flag: string; position: number }[];
+  };
 }
 
 function GroupSlideModal({ isOpen, onClose, group }: GroupSlideModalProps) {
   const dispatch = useAppDispatch();
   const results = useAppSelector((state) => state.groups[group.name].results);
+
+  const orderedCountries = group.countries.sort((a, b) => {
+    return a.position - b.position;
+  });
 
   return (
     <SlideModal
@@ -29,8 +36,8 @@ function GroupSlideModal({ isOpen, onClose, group }: GroupSlideModalProps) {
       <h1 className={styles.Title}>Group {group.name}</h1>
       <div className={styles.Matchups}>
         {MATCHUPS.map((matchup, index) => {
-          const country1 = group.countries[matchup[0]];
-          const country2 = group.countries[matchup[1]];
+          const country1 = orderedCountries[matchup[0]];
+          const country2 = orderedCountries[matchup[1]];
           return (
             <div key={matchup.join("")} className={styles.Matchup}>
               <div className={clsx(styles.MatchupCountry, styles.left)}>

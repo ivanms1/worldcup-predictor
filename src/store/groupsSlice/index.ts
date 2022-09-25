@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+import getCountryData from "src/helpers/getCountryData";
+
 export type Group = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H";
 
 export type Match = 0 | 1 | 2 | 3 | 4 | 5;
@@ -22,6 +24,17 @@ export type CounterState = {
         [key: number]: number;
       };
     };
+    countriesData: {
+      [key: number]: {
+        Pts: number;
+        W: number;
+        D: number;
+        L: number;
+        GF: number;
+        GA: number;
+        MP: number;
+      };
+    };
   };
 };
 
@@ -35,6 +48,7 @@ const initialState: CounterState = {
       4: {},
       5: {},
     },
+    countriesData: {},
   },
   B: {
     results: {
@@ -45,6 +59,7 @@ const initialState: CounterState = {
       4: {},
       5: {},
     },
+    countriesData: {},
   },
   C: {
     results: {
@@ -55,6 +70,7 @@ const initialState: CounterState = {
       4: {},
       5: {},
     },
+    countriesData: {},
   },
   D: {
     results: {
@@ -65,6 +81,7 @@ const initialState: CounterState = {
       4: {},
       5: {},
     },
+    countriesData: {},
   },
   E: {
     results: {
@@ -75,6 +92,7 @@ const initialState: CounterState = {
       4: {},
       5: {},
     },
+    countriesData: {},
   },
   F: {
     results: {
@@ -85,6 +103,7 @@ const initialState: CounterState = {
       4: {},
       5: {},
     },
+    countriesData: {},
   },
   G: {
     results: {
@@ -95,6 +114,7 @@ const initialState: CounterState = {
       4: {},
       5: {},
     },
+    countriesData: {},
   },
   H: {
     results: {
@@ -105,6 +125,7 @@ const initialState: CounterState = {
       4: {},
       5: {},
     },
+    countriesData: {},
   },
 };
 
@@ -113,19 +134,21 @@ export const groupsSlice = createSlice({
   initialState,
   reducers: {
     updateMatch: (state, action: PayloadAction<MatchData>) => {
-      state[action.payload.group].results[action.payload.match][
-        action.payload.result.country
-      ] = action.payload.result.score;
+      const { group, match, result } = action.payload;
+      state[group].results[match][result.country] = result.score;
 
-      if (
-        !state[action.payload.group].results[action.payload.match][
-          action.payload.result.opponent
-        ]
-      ) {
-        state[action.payload.group].results[action.payload.match][
-          action.payload.result.opponent
-        ] = 0;
+      if (!state[group].results[match][result.opponent]) {
+        state[group].results[match][result.opponent] = 0;
       }
+
+      state[group].countriesData[result.country] = getCountryData(
+        result.country,
+        state[group].results
+      );
+      state[group].countriesData[result.opponent] = getCountryData(
+        result.opponent,
+        state[group].results
+      );
     },
   },
 });

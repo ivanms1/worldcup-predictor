@@ -5,11 +5,15 @@ import CountryRow from "../CountryRow";
 import GroupSlideModal from "./GroupSlideModal";
 
 import styles from "./GroupBox.module.scss";
+import { store } from "src/store";
 
 export const COLUMN_NAMES = ["Pts", "MP", "W", "D", "L", "GD"];
 
 interface GroupBoxProps {
-  group: { name: string; countries: { name: string; flag: string }[] };
+  group: {
+    name: string;
+    countries: { name: string; flag: string; position: number }[];
+  };
 }
 
 function GroupBox({ group }: GroupBoxProps) {
@@ -34,14 +38,22 @@ function GroupBox({ group }: GroupBoxProps) {
           </div>
         </div>
         <div className={styles.Countries}>
-          {countries.map((country, index) => (
-            <CountryRow
-              key={country.name}
-              country={country}
-              groupName={group.name}
-              countryKey={index}
-            />
-          ))}
+          {countries
+            .sort((a, b) => {
+              const countryAData =
+                store.getState().groups[name].countriesData[a.position];
+              const countryBData =
+                store.getState().groups[name].countriesData[b.position];
+              return (countryBData?.Pts ?? 0) - (countryAData?.Pts ?? 0);
+            })
+            .map((country) => (
+              <CountryRow
+                key={country.name}
+                country={country}
+                groupName={group.name}
+                countryKey={country.position}
+              />
+            ))}
         </div>
       </Button>
       <GroupSlideModal
