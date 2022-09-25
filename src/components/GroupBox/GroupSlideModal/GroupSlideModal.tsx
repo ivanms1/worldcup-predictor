@@ -1,19 +1,25 @@
 import React from "react";
 import Image from "next/image";
 import clsx from "clsx";
+import { useAppDispatch, useAppSelector } from "src/store";
 
 import SlideModal from "@/components/Drawer/Drawer";
 import Button from "@/components/Button";
+
+import { Group, updateMatch } from "src/store/groupsSlice";
 
 import styles from "./GroupSlideModal.module.scss";
 
 interface GroupSlideModalProps {
   isOpen: boolean;
   onClose: () => void;
-  group: { name: string; countries: { name: string; flag: string }[] };
+  group: { name: Group; countries: { name: string; flag: string }[] };
 }
 
 function GroupSlideModal({ isOpen, onClose, group }: GroupSlideModalProps) {
+  const dispatch = useAppDispatch();
+  const results = useAppSelector((state) => state.groups[group.name].results);
+
   return (
     <SlideModal
       className={styles.GroupSlideModal}
@@ -22,7 +28,7 @@ function GroupSlideModal({ isOpen, onClose, group }: GroupSlideModalProps) {
     >
       <h1 className={styles.Title}>Group {group.name}</h1>
       <div className={styles.Matchups}>
-        {MATCHUPS.map((matchup) => {
+        {MATCHUPS.map((matchup, index) => {
           const country1 = group.countries[matchup[0]];
           const country2 = group.countries[matchup[1]];
           return (
@@ -38,6 +44,21 @@ function GroupSlideModal({ isOpen, onClose, group }: GroupSlideModalProps) {
                 <input
                   type="number"
                   className={styles.ScoreInput}
+                  value={results[index][matchup[0]]}
+                  placeholder="0"
+                  onChange={(e) =>
+                    dispatch(
+                      updateMatch({
+                        group: group.name,
+                        match: index,
+                        result: {
+                          country: matchup[0],
+                          opponent: matchup[1],
+                          score: Number(e.target.value),
+                        },
+                      })
+                    )
+                  }
                   min={0}
                   step={1}
                 />
@@ -48,6 +69,21 @@ function GroupSlideModal({ isOpen, onClose, group }: GroupSlideModalProps) {
                   className={styles.ScoreInput}
                   min={0}
                   step={1}
+                  value={results[index][matchup[1]]}
+                  placeholder="0"
+                  onChange={(e) =>
+                    dispatch(
+                      updateMatch({
+                        group: group.name,
+                        match: index,
+                        result: {
+                          country: matchup[1],
+                          opponent: matchup[0],
+                          score: Number(e.target.value),
+                        },
+                      })
+                    )
+                  }
                 />
                 <Image
                   alt={country2.name}
@@ -62,10 +98,10 @@ function GroupSlideModal({ isOpen, onClose, group }: GroupSlideModalProps) {
         })}
       </div>
       <div className={styles.ActionSection}>
-        <Button onClick={onClose} variant="secondary">
+        <Button type="button" onClick={onClose} variant="secondary">
           Cancel
         </Button>
-        <Button onClick={onClose}>Save</Button>
+        <Button type="submit">Save</Button>
       </div>
     </SlideModal>
   );
