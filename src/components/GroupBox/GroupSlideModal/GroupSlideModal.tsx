@@ -106,9 +106,8 @@ function GroupSlideModal({ isOpen, onClose, group }: GroupSlideModalProps) {
       </div>
       <div className={styles.ActionSection}>
         <Button type="button" onClick={onClose} variant="secondary">
-          Cancel
+          Close
         </Button>
-        <Button type="submit">Save</Button>
       </div>
     </SlideModal>
   );
