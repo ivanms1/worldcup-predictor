@@ -6,14 +6,14 @@ import { useAppDispatch, useAppSelector } from "src/store";
 import SlideModal from "@/components/Drawer/Drawer";
 import Button from "@/components/Button";
 
-import { Group, updateMatch } from "src/store/groupsSlice";
+import { updateMatch } from "src/store/groupsSlice";
 
 import styles from "./GroupSlideModal.module.scss";
 
 interface GroupSlideModalProps {
   isOpen: boolean;
   onClose: () => void;
-  group: { name: Group; countries: { name: string; flag: string }[] };
+  group: { name: string; countries: { name: string; flag: string }[] };
 }
 
 function GroupSlideModal({ isOpen, onClose, group }: GroupSlideModalProps) {

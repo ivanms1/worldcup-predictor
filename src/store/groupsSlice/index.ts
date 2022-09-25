@@ -6,7 +6,7 @@ export type Group = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H";
 export type Match = 0 | 1 | 2 | 3 | 4 | 5;
 
 type MatchData = {
-  group: Group;
+  group: string;
   match: number;
   result: {
     opponent: number;
@@ -116,13 +116,6 @@ export const groupsSlice = createSlice({
       state[action.payload.group].results[action.payload.match][
         action.payload.result.country
       ] = action.payload.result.score;
-
-      console.log(
-        state[action.payload.group].results[action.payload.match][
-          action.payload.result.opponent
-        ],
-        action.payload.result.score
-      );
 
       if (
         !state[action.payload.group].results[action.payload.match][

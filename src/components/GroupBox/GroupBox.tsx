@@ -5,12 +5,11 @@ import CountryRow from "../CountryRow";
 import GroupSlideModal from "./GroupSlideModal";
 
 import styles from "./GroupBox.module.scss";
-import { Group } from "src/store/groupsSlice";
 
 export const COLUMN_NAMES = ["Pts", "MP", "W", "D", "L", "GD"];
 
 interface GroupBoxProps {
-  group: { name: Group; countries: { name: string; flag: string }[] };
+  group: { name: string; countries: { name: string; flag: string }[] };
 }
 
 function GroupBox({ group }: GroupBoxProps) {
