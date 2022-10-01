@@ -26,4 +26,14 @@
     gap: 2rem;
     justify-content: center;
   }
+
+  @media screen and (max-width: 768px) {
+    & .Title {
+      font-size: 2rem;
+    }
+
+    & .Subtitle {
+      font-size: 1.2rem;
+    }
+  }
 }
