@@ -17,7 +17,7 @@ type MatchData = {
   };
 };
 
-export type CounterState = {
+export type GroupsState = {
   [key: string]: {
     results: {
       [key: number]: {
@@ -38,7 +38,7 @@ export type CounterState = {
   };
 };
 
-const initialState: CounterState = {
+const initialState: GroupsState = {
   A: {
     results: {
       0: {},
